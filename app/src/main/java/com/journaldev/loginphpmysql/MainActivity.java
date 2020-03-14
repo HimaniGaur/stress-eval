@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText editEmail, editPassword, editName;
     Button btnSignIn, btnRegister;
 
-    String URL= "http://10.0.2.2/survey/index.php";
+    String URL= "http://192.168.1.103/survey/index.php";
 
     JSONParser jsonParser=new JSONParser();
 
@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 if(i==0)
                 {
                     i=1;
+                    editName.setHint("Username");
                     editEmail.setVisibility(View.VISIBLE);
                     btnSignIn.setVisibility(View.GONE);
                     btnRegister.setText("CREATE ACCOUNT");
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
         protected JSONObject doInBackground(String... args) {
 
-
-
             String email = args[2];
             String password = args[1];
             String name= args[0];
@@ -127,9 +126,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-
         }
-
     }
 }
