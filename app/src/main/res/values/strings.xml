@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">LoginPHPMySQL</string>
+    <string name="thank_you_message">Thank you for completing this section!!</string>
+    <string name="option1">Strongly Disagree</string>
+    <string name="option2">Slightly Disagree</string>
+    <string name="option3">Neutral</string>
+    <string name="option4">Slightly Agree</string>
+    <string name="option5">Strongly Agree</string>
+    <string name="button_finish_text">Finish</string>
+    <string name="loading">Loading...</string>
 </resources>

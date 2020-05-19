@@ -18,6 +18,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.stressevaluator.app.Constants.baseUrl;
+
 public class Questionnaire extends AppCompatActivity {
     private TextView textViewQuestion;
     private Button buttonNextQuestion;
@@ -27,11 +29,10 @@ public class Questionnaire extends AppCompatActivity {
     private RadioButton rb3;
     private RadioButton rb4;
     private RadioButton rb5;
-    private Integer questionCounter = 0;
     JSONParser jsonParser = new JSONParser();
     JSONArray AllQuestions;
 
-    String URL= "http://192.168.1.103/survey/getAlLQuestions.php";
+    String URL= baseUrl + "/survey/getAllQuestions.php";
 
     private ColorStateList textColorDefaultRb;
 
@@ -49,22 +50,26 @@ public class Questionnaire extends AppCompatActivity {
         rb4 = findViewById(R.id.radio_button4);
         rb5 = findViewById(R.id.radio_button5);
 
-        GetAllQuestions getAllQuestions = new GetAllQuestions();
-        getAllQuestions.execute();
+        new GetAllQuestions().execute();
     }
 
     private void loadNextQuestion(final Integer questionCounter) throws JSONException {
         if (questionCounter < AllQuestions.length()) {
-            textViewQuestion.setText(AllQuestions.optJSONObject(questionCounter).getString("Question"));
+            String jString = AllQuestions.getString(questionCounter);
+            String question = (questionCounter + 1) + ". "+ new JSONObject(jString).getString("Question");
+
+            textViewQuestion.setText(question);
+            rbGroup.clearCheck();
+
+
             buttonNextQuestion.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (!rb1.isSelected() && !rb2.isSelected() && !rb3.isSelected()
-                    && !rb4.isSelected() && !rb5.isSelected()) {
+                    if (!rb1.isChecked() && !rb2.isChecked() && !rb3.isChecked()
+                    && !rb4.isChecked() && !rb5.isChecked()) {
                         Toast.makeText(getApplicationContext(), "Please select an option", Toast.LENGTH_SHORT).
                                 show();
                     } else {
-                        // store the responses in an array or a file
                         try {
                             loadNextQuestion(questionCounter+1);
                         } catch (JSONException e) {
@@ -73,22 +78,33 @@ public class Questionnaire extends AppCompatActivity {
                     }
                 }
             });
+        } else {
+            textViewQuestion.setText(R.string.thank_you_message);
+            rbGroup.setVisibility(View.INVISIBLE);
+            buttonNextQuestion.setText(R.string.button_finish_text);
+            // TODO: store the responses in an array or a file
         }
 
     }
 
-    private class GetAllQuestions extends AsyncTask<Void, Void, JSONObject> {
+    private class GetAllQuestions extends AsyncTask<Void, String, JSONObject> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(String... values) {
+            super.onProgressUpdate(values);
             textViewQuestion.setText("Loading...");
         }
 
         @Override
-        protected JSONObject doInBackground(Void... voids) {
+        protected JSONObject doInBackground(Void... args) {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            return jsonParser.makeHttpRequest(URL, "GET", params);
+            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
+            return json;
         }
 
         @Override
@@ -96,7 +112,7 @@ public class Questionnaire extends AppCompatActivity {
 //            super.onPostExecute();
             try {
                 AllQuestions = result.getJSONArray("message");
-                loadNextQuestion(questionCounter);
+                loadNextQuestion(0);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

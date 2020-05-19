@@ -9,7 +9,7 @@
         android:id="@+id/text_view_question"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="The question will appear here"
+        android:text="@string/loading"
         android:textSize="24sp"
         android:textAlignment="center"
         android:layout_centerHorizontal="true"
@@ -26,31 +26,31 @@
             android:id="@+id/radio_button1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Option1"
+            android:text="@string/option1"
             />
         <RadioButton
             android:id="@+id/radio_button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Option2"
+            android:text="@string/option2"
             />
         <RadioButton
             android:id="@+id/radio_button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Option3"
+            android:text="@string/option3"
             />
         <RadioButton
             android:id="@+id/radio_button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Option4"
+            android:text="@string/option4"
             />
         <RadioButton
             android:id="@+id/radio_button5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Option5"
+            android:text="@string/option5"
             />
     </RadioGroup>
 

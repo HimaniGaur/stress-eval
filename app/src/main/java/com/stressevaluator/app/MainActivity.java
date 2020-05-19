@@ -18,13 +18,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.stressevaluator.app.Constants.baseUrl;
+
 public class MainActivity extends AppCompatActivity {
 
 
     EditText editEmail, editPassword, editName;
     Button btnSignIn, btnRegister;
 
-    String URL= "http://192.168.1.103/survey/index.php";
+    String URL= baseUrl + "/survey/index.php";
 
     JSONParser jsonParser=new JSONParser();
 

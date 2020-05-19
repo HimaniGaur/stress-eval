@@ -25,8 +25,7 @@ public class AllQuestionnaires extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), Questionnaire.class);
-//                intent.putExtra("Attempt", 1);
-                Log.e("AllQuestionnaires", "Attempting to start the activity");
+                intent.putExtra("Attempt", 1);
                 startActivity(intent);
             }
         });
