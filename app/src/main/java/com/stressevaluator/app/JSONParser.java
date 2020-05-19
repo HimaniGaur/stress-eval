@@ -1,4 +1,4 @@
-package com.journaldev.loginphpmysql;
+package com.stressevaluator.app;
 
 import android.util.Log;
 

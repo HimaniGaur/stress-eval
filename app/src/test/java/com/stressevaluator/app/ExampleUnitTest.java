@@ -1,4 +1,4 @@
-package com.journaldev.loginphpmysql;
+package com.journaldev.app;
 
 import org.junit.Test;
 
