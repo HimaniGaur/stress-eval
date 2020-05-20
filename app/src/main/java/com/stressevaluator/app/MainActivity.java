@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText editEmail, editPassword, editName;
-    Button btnSignIn, btnRegister;
+    Button btnSignIn, btnRegister, btnSignIn2;
 
     String URL= baseUrl + "/survey/index.php";
 
@@ -42,12 +42,13 @@ public class MainActivity extends AppCompatActivity {
         }*/
         setContentView(R.layout.activity_main);
 
-        editEmail=(EditText)findViewById(R.id.editEmail);
-        editName=(EditText)findViewById(R.id.editName);
-        editPassword=(EditText)findViewById(R.id.editPassword);
+        editEmail= findViewById(R.id.editEmail);
+        editName= findViewById(R.id.editName);
+        editPassword= findViewById(R.id.editPassword);
 
-        btnSignIn=(Button)findViewById(R.id.btnSignIn);
-        btnRegister=(Button)findViewById(R.id.btnRegister);
+        btnSignIn = findViewById(R.id.btnSignIn);
+        btnRegister = findViewById(R.id.btnRegister);
+        btnSignIn2 = findViewById(R.id.btnSignIn_2);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
                     editEmail.setVisibility(View.VISIBLE);
                     btnSignIn.setVisibility(View.GONE);
                     btnRegister.setText("CREATE ACCOUNT");
+                    btnSignIn2.setVisibility(View.VISIBLE);
+
                 }
                 else{
 
@@ -80,11 +83,19 @@ public class MainActivity extends AppCompatActivity {
                     attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),editEmail.getText().toString());
 
                 }
-
             }
         });
 
-
+        btnSignIn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                btnRegister.setText("REGISTER");
+                btnSignIn2.setVisibility(View.GONE);
+                editEmail.setVisibility(View.GONE);
+                btnSignIn.setVisibility(View.VISIBLE);
+                i=0;
+            }
+        });
     }
 
     private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
