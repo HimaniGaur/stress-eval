@@ -30,6 +30,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     int i=0;
 
+    UserLocalStore userLocalStore;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
         btnSignIn = findViewById(R.id.btnSignIn);
         btnRegister = findViewById(R.id.btnRegister);
 
+        userLocalStore = new UserLocalStore(this);
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +63,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 else{
                     AttemptLogin attemptLogin= new AttemptLogin();
                     attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
+
+                    String username = editName.getText().toString();
+                    String password = editPassword.getText().toString();
+
                 /*    editName.setHint("Username");
                     editEmail.setVisibility(View.VISIBLE);
                     btnRegister.setText("CREATE ACCOUNT");*/
@@ -93,6 +101,8 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
 
+        String name, email, password;
+
         @Override
 
         protected void onPreExecute() {
@@ -105,9 +115,9 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
         protected JSONObject doInBackground(String... args) {
 
-            String email = args[2];
-            String password = args[1];
-            String name= args[0];
+            this.email = args[2];
+            this.password = args[1];
+            this.name= args[0];
 
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", name));
@@ -123,15 +133,24 @@ public class LoginRegisterActivity extends AppCompatActivity {
         protected void onPostExecute(JSONObject result) {
 
             // dismiss the dialog once product deleted
-            //Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+            // Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
 
             try {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
-                    startActivity(intent);
+
+                    if (result.getString("success").equals("1")) {
+
+                        // store user details now
+                        User registeredUser = new User(name, email, password);
+                        userLocalStore.storeUserData(registeredUser);
+                        userLocalStore.setUserLoggedIn(true);
+
+                        Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
+                        startActivity(intent);
+                    }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Error: Server not responding", Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
