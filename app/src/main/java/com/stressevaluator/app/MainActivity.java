@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     EditText editEmail, editPassword, editName;
-    Button btnSignIn, btnRegister, btnSignIn2;
+    Button btnSignIn, btnRegister;
 
     String URL= baseUrl + "/survey/index.php";
 
@@ -48,13 +48,24 @@ public class MainActivity extends AppCompatActivity {
 
         btnSignIn = findViewById(R.id.btnSignIn);
         btnRegister = findViewById(R.id.btnRegister);
-        btnSignIn2 = findViewById(R.id.btnSignIn_2);
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AttemptLogin attemptLogin= new AttemptLogin();
-                attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
+                if(i==1)
+                {
+                    i=0;
+                    btnRegister.setText("REGISTER");
+                    editEmail.setVisibility(View.GONE);
+                }
+                else{
+                    i=0;
+                    AttemptLogin attemptLogin= new AttemptLogin();
+                    attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
+                /*    editName.setHint("Username");
+                    editEmail.setVisibility(View.VISIBLE);
+                    btnRegister.setText("CREATE ACCOUNT");*/
+                }
             }
         });
 
@@ -67,33 +78,18 @@ public class MainActivity extends AppCompatActivity {
                     i=1;
                     editName.setHint("Username");
                     editEmail.setVisibility(View.VISIBLE);
-                    btnSignIn.setVisibility(View.GONE);
                     btnRegister.setText("CREATE ACCOUNT");
-                    btnSignIn2.setVisibility(View.VISIBLE);
-
                 }
                 else{
 
                     btnRegister.setText("REGISTER");
                     editEmail.setVisibility(View.GONE);
-                    btnSignIn.setVisibility(View.VISIBLE);
                     i=0;
 
                     AttemptLogin attemptLogin= new AttemptLogin();
                     attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),editEmail.getText().toString());
 
                 }
-            }
-        });
-
-        btnSignIn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                btnRegister.setText("REGISTER");
-                btnSignIn2.setVisibility(View.GONE);
-                editEmail.setVisibility(View.GONE);
-                btnSignIn.setVisibility(View.VISIBLE);
-                i=0;
             }
         });
     }
