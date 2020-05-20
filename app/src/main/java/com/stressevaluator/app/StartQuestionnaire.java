@@ -40,6 +40,7 @@ public class StartQuestionnaire extends AppCompatActivity {
                 userLocalStore.setUserLoggedIn(false);
                 Intent intent = new Intent(getApplicationContext(), LoginRegisterActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }

@@ -45,7 +45,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
         editEmail= findViewById(R.id.editEmail);
         editName= findViewById(R.id.editName);
         editPassword= findViewById(R.id.editPassword);
-
         btnSignIn = findViewById(R.id.btnSignIn);
         btnRegister = findViewById(R.id.btnRegister);
 
@@ -148,6 +147,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
                         startActivity(intent);
+                        finish();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Error: Server not responding", Toast.LENGTH_LONG).show();
