@@ -85,10 +85,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     btnRegister.setText("CREATE ACCOUNT");
                 }
                 else{
-
-                    btnRegister.setText("REGISTER");
+/*                  btnRegister.setText("REGISTER");
                     editEmail.setVisibility(View.GONE);
                     i=0;
+*/
 
                     AttemptLogin attemptLogin= new AttemptLogin();
                     attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),editEmail.getText().toString());
