@@ -70,6 +70,7 @@ public class Questionnaire extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please select an option", Toast.LENGTH_SHORT).
                                 show();
                     } else {
+                        // TODO: Store the response in local storage
                         try {
                             loadNextQuestion(questionCounter+1);
                         } catch (JSONException e) {
@@ -82,7 +83,6 @@ public class Questionnaire extends AppCompatActivity {
             textViewQuestion.setText(R.string.thank_you_message);
             rbGroup.setVisibility(View.INVISIBLE);
             buttonNextQuestion.setText(R.string.button_finish_text);
-            // TODO: store the responses in an array or a file
         }
 
     }

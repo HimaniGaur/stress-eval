@@ -57,7 +57,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     editEmail.setVisibility(View.GONE);
                 }
                 else{
-                    i=0;
                     AttemptLogin attemptLogin= new AttemptLogin();
                     attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
                 /*    editName.setHint("Username");

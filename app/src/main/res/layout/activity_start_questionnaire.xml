@@ -5,56 +5,21 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
     <TextView
         android:id="@+id/text_view_section_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Section 1"
+        android:text="Hello, user"
+        android:textSize="24dp"
         android:layout_centerHorizontal="true"
+        android:layout_above="@id/button_attempt_section_1"
         />
     <Button
         android:id="@+id/button_attempt_section_1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Attempt"
+        android:text="Start Test"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_view_section_1"
+        android:layout_centerInParent="true"
         />
-    <TextView
-        android:id="@+id/text_view_section_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Section 2"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/button_attempt_section_1"
-        />
-    <Button
-        android:id="@+id/button_attempt_section_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Attempt"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_view_section_2"
-        />
-    <TextView
-        android:id="@+id/text_view_section_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Section 3"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/button_attempt_section_2"
-        />
-    <Button
-        android:id="@+id/button_attempt_section_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Attempt"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/text_view_section_3"
-        />
-    </RelativeLayout>
 </RelativeLayout>
