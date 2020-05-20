@@ -2,8 +2,6 @@ package com.stressevaluator.app;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.os.Build;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +18,7 @@ import java.util.ArrayList;
 
 import static com.stressevaluator.app.Constants.baseUrl;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginRegisterActivity extends AppCompatActivity {
 
 
     EditText editEmail, editPassword, editName;
@@ -40,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
             System.out.println("******* MY thread is now configured to allow connections *******");
         }*/
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login_register);
 
         editEmail= findViewById(R.id.editEmail);
         editName= findViewById(R.id.editName);
@@ -131,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
+                    Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Unable to retrieve any data from server", Toast.LENGTH_LONG).show();
