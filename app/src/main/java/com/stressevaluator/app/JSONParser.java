@@ -1,6 +1,7 @@
 package com.stressevaluator.app;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 public class JSONParser {
@@ -83,6 +85,8 @@ public class JSONParser {
             e.printStackTrace();
         } catch (ClientProtocolException e) {
             e.printStackTrace();
+        } catch (UnknownHostException e) {
+            Log.e("API123", "Internet not connected");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,6 +102,10 @@ public class JSONParser {
             is.close();
             json = sb.toString();
             Log.d("API123",json);
+        } catch (NullPointerException e) {
+            json = "{success: '0'," +
+                    "message: 'Internet not connected'" +
+                    "}";
         } catch (Exception e) {
             Log.e("Buffer Error", "Error converting result " + e.toString());
         }
@@ -111,6 +119,7 @@ public class JSONParser {
         }
 
         // return JSON String
+        Log.d("JSONObject", jObj.toString());
         return jObj;
 
     }

@@ -29,10 +29,7 @@ public class Questionnaire extends AppCompatActivity {
     private RadioButton rb3;
     private RadioButton rb4;
     private RadioButton rb5;
-    JSONParser jsonParser = new JSONParser();
     JSONArray AllQuestions;
-
-    String URL= baseUrl + "/getAllQuestions.php";
 
     private ColorStateList textColorDefaultRb;
 
@@ -50,7 +47,13 @@ public class Questionnaire extends AppCompatActivity {
         rb4 = findViewById(R.id.radio_button4);
         rb5 = findViewById(R.id.radio_button5);
 
-        new GetAllQuestions().execute();
+        try {
+            AllQuestions = new JSONArray(getIntent().getStringExtra("AllQuestions"));
+            loadNextQuestion(0);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void loadNextQuestion(final Integer questionCounter) throws JSONException {
@@ -86,37 +89,4 @@ public class Questionnaire extends AppCompatActivity {
         }
 
     }
-
-    private class GetAllQuestions extends AsyncTask<Void, String, JSONObject> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(String... values) {
-            super.onProgressUpdate(values);
-            textViewQuestion.setText("Loading...");
-        }
-
-        @Override
-        protected JSONObject doInBackground(Void... args) {
-            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
-            return json;
-        }
-
-        @Override
-        protected void onPostExecute(JSONObject result) {
-//            super.onPostExecute();
-            try {
-                AllQuestions = result.getJSONArray("message");
-                loadNextQuestion(0);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
 }
