@@ -24,7 +24,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     EditText editEmail, editPassword, editName;
     Button btnSignIn, btnRegister;
 
-    String URL= baseUrl + "/survey/index.php";
+    String URL= baseUrl + "/index.php";
 
     JSONParser jsonParser=new JSONParser();
 

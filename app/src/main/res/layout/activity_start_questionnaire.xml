@@ -11,25 +11,42 @@
         android:layout_height="wrap_content"
         android:text="Hello, user"
         android:textSize="24dp"
+        android:layout_marginTop="16dp"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/button_attempt_section_1"
         />
+    <TextView
+        android:id="@+id/text_view_motivation_message"
+        android:layout_below="@id/text_view_hello_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/motivation_message"
+        android:textSize="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+        />
+
+    <ListView
+        android:id="@+id/list_view_start_questionnaire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
     <Button
-        android:id="@+id/button_attempt_section_1"
+        android:id="@+id/button_GetResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Test"
+        android:text="Get Results"
         android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/list_view_start_questionnaire"
         />
 
     <Button
         android:id="@+id/button_logout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Logout"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/button_attempt_section_1"
         />
+
 </RelativeLayout>

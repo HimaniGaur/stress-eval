@@ -1,5 +1,5 @@
 package com.stressevaluator.app;
 
 public final class Constants {
-    public static final String baseUrl = "http://192.168.1.103";
+        public static final String baseUrl = "https://self-important-real.000webhostapp.com";
 }

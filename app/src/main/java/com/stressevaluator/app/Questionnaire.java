@@ -32,7 +32,7 @@ public class Questionnaire extends AppCompatActivity {
     JSONParser jsonParser = new JSONParser();
     JSONArray AllQuestions;
 
-    String URL= baseUrl + "/survey/getAllQuestions.php";
+    String URL= baseUrl + "/getAllQuestions.php";
 
     private ColorStateList textColorDefaultRb;
 
