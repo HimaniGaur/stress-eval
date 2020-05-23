@@ -2,6 +2,7 @@ package com.stressevaluator.app;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 //import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -127,6 +128,8 @@ public class Questionnaire extends AppCompatActivity {
                                 userLocalStore.setQuestionnaireResponse(questionnaireName, responses);
                                 // TODO: Push the responses in database
                                 // Todo: change the activity back to StartQuestionnaire
+                                Intent intent = new Intent(Questionnaire.this, StartQuestionnaire.class);
+                                startActivity(intent);
                             }
                         });
                         alertDialog.setNegativeButton(android.R.string.no, null);
