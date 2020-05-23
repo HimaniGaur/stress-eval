@@ -64,19 +64,19 @@ public class Questionnaire extends AppCompatActivity {
         textViewQuestion.setText(question);
 
         switch (responses.get(questionCounter)) {
-            case 0:
+            case 1:
                 rb1.setSelected(true);
                 break;
-            case 1:
+            case 2:
                 rb2.setSelected(true);
                 break;
-            case 2:
+            case 3:
                 rb3.setSelected(true);
                 break;
-            case 3:
+            case 4:
                 rb4.setSelected(true);
                 break;
-            case 4:
+            case 5:
                 rb5.setSelected(true);
                 break;
             default:
@@ -96,11 +96,11 @@ public class Questionnaire extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Please select an option", Toast.LENGTH_SHORT).
                             show();
                 } else {
-                    if (rb1.isChecked()) responses.set(questionCounter, 0);
-                    else if (rb2.isChecked()) responses.set(questionCounter, 1);
-                    else if (rb3.isChecked()) responses.set(questionCounter, 2);
-                    else if (rb4.isChecked()) responses.set(questionCounter, 3);
-                    else if (rb5.isChecked()) responses.set(questionCounter, 4);
+                    if (rb1.isChecked()) responses.set(questionCounter, 1);
+                    else if (rb2.isChecked()) responses.set(questionCounter, 2);
+                    else if (rb3.isChecked()) responses.set(questionCounter, 3);
+                    else if (rb4.isChecked()) responses.set(questionCounter, 4);
+                    else if (rb5.isChecked()) responses.set(questionCounter, 5);
 
                     if (questionCounter < AllQuestions.length() - 1) {
                         try {
