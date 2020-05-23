@@ -1,6 +1,7 @@
 package com.stressevaluator.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,7 @@ public class StartQuestionnaire extends AppCompatActivity {
     private ListView listView;
 
     private UserLocalStore userLocalStore;
+    SharedPreferences sharedPreferences;
 
     JSONArray AllQuestions;
 
@@ -42,16 +44,8 @@ public class StartQuestionnaire extends AppCompatActivity {
         btnLogout = findViewById(R.id.button_logout);
         helloMessage = findViewById(R.id.text_view_hello_message);
         listView = findViewById(R.id.list_view_start_questionnaire);
-
+        sharedPreferences = getSharedPreferences("userDetails", 0);
         helloMessage.setText("Hello, " + userLocalStore.getLoggedInUser().username);
-
-/*        btnSection1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), Questionnaire.class);
-                startActivity(intent);
-            }
-        });*/
 
         final List<String> questionnaireNames = new ArrayList<>();
         questionnaireNames.add("Questionnaire 1");
@@ -69,10 +63,15 @@ public class StartQuestionnaire extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
                 String questionnaire = questionnaireNames.get(i);
-                // load questions belonging to the questionnaire
-                new GetAllQuestions().execute(questionnaire);
+
+                if (sharedPreferences.contains(questionnaire + "_score")) {
+                    Log.d("StartQ.ListView", "Already attempted");
+                    Toast.makeText(getApplicationContext(), R.string.already_attempted, Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
+                    new GetAllQuestions().execute(questionnaire);
+                }
             }
         });
 
