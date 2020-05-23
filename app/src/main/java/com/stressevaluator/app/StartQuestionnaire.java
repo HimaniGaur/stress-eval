@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,10 +69,10 @@ public class StartQuestionnaire extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
                 String questionnaire = questionnaireNames.get(i);
-
                 // load questions belonging to the questionnaire
-                new GetAllQuestions().execute();
+                new GetAllQuestions().execute(questionnaire);
             }
         });
 
@@ -88,7 +89,7 @@ public class StartQuestionnaire extends AppCompatActivity {
     }
 
 
-    private class GetAllQuestions extends AsyncTask<Void, String, JSONObject> {
+    private class GetAllQuestions extends AsyncTask<String, String, JSONObject> {
         JSONParser jsonParser = new JSONParser();
         String URL = baseUrl + "/getAllQuestions.php";
 
@@ -103,8 +104,10 @@ public class StartQuestionnaire extends AppCompatActivity {
         }
 
         @Override
-        protected JSONObject doInBackground(Void... args) {
+        protected JSONObject doInBackground(String... args) {
+            String questionnaireName = args[0];
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            params.add(new BasicNameValuePair("questionnaireName", questionnaireName));
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
             return json;
         }
