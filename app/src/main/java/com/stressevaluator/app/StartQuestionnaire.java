@@ -92,6 +92,7 @@ public class StartQuestionnaire extends AppCompatActivity {
     private class GetAllQuestions extends AsyncTask<String, String, JSONObject> {
         JSONParser jsonParser = new JSONParser();
         String URL = baseUrl + "/getAllQuestions.php";
+        String questionnaireName;
 
         @Override
         protected void onPreExecute() {
@@ -105,7 +106,7 @@ public class StartQuestionnaire extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-            String questionnaireName = args[0];
+            questionnaireName = args[0];
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("questionnaireName", questionnaireName));
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
@@ -122,6 +123,7 @@ public class StartQuestionnaire extends AppCompatActivity {
                     } else {
                         AllQuestions = result.getJSONArray("message");
                         Intent intent = new Intent(getApplicationContext(), Questionnaire.class);
+                        intent.putExtra("QuestionnaireName", questionnaireName);
                         intent.putExtra("AllQuestions", AllQuestions.toString());
                         startActivity(intent);
                     }
