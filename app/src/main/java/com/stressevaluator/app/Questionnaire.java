@@ -22,7 +22,7 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 public class Questionnaire extends AppCompatActivity {
-    private TextView textViewQuestion;
+    private TextView textViewQuestion, textViewQuestionNum;
     private Button buttonNextQuestion, buttonPrevQuestion;
     private RadioGroup rbGroup;
     private RadioButton rb1, rb2, rb3, rb4, rb5;
@@ -39,6 +39,7 @@ public class Questionnaire extends AppCompatActivity {
         setContentView(R.layout.activity_questionnaire);
 
         textViewQuestion = findViewById(R.id.text_view_question);
+        textViewQuestionNum = findViewById(R.id.text_view_question_num);
         buttonNextQuestion = findViewById(R.id.button_next_question);
         buttonPrevQuestion = findViewById(R.id.button_previous_question);
         rbGroup = findViewById(R.id.radio_group);
@@ -63,9 +64,11 @@ public class Questionnaire extends AppCompatActivity {
     private void loadQuestion(final Integer questionCounter) throws JSONException {
         Log.d("Questionnaire", "response: " + Arrays.toString(responses) + ", " + questionCounter);
         String jString = AllQuestions.getString(questionCounter);
-        String question = (questionCounter + 1) + ". " + new JSONObject(jString).getString("Question");
+        String question = new JSONObject(jString).getString("Question");
+        String questionNum = "Question " + (questionCounter+1) + "/" + AllQuestions.length();
 
         textViewQuestion.setText(question);
+        textViewQuestionNum.setText(questionNum);
 
         if (responses[questionCounter] == null)
             rbGroup.clearCheck();
