@@ -47,10 +47,7 @@ public class StartQuestionnaire extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("userDetails", 0);
         helloMessage.setText("Hello, " + userLocalStore.getLoggedInUser().username);
 
-        final List<String> questionnaireNames = new ArrayList<>();
-        questionnaireNames.add("Questionnaire 1");
-        questionnaireNames.add("Questionnaire 2");
-        questionnaireNames.add("Questionnaire 3");
+        final List<String> questionnaireNames = Constants.questionnaireNames;
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
                 this,
