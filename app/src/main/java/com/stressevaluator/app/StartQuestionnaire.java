@@ -86,6 +86,7 @@ public class StartQuestionnaire extends AppCompatActivity {
                         intent.putExtra("QuestionnaireCode", questionnaireCode);
                         intent.putExtra("AllQuestions", AllQuestions.toString());
                         startActivity(intent);
+                        finish();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(), "Error: Server not responding", Toast.LENGTH_SHORT).show();

@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.stressevaluator.app.Constants.baseUrl;
+import static com.stressevaluator.app.Constants.getQuestionnaireCode;
 
 public class AllQuestionnaires extends AppCompatActivity {
 
@@ -60,8 +61,9 @@ public class AllQuestionnaires extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String questionnaire = questionnaireNames.get(i);
+                String questionnaireCode = getQuestionnaireCode(questionnaire);
 
-                if (responseLocalStore.isQuestionnaireAttempted(questionnaire)) {
+                if (responseLocalStore.isQuestionnaireAttempted(questionnaireCode)) {
                     Toast.makeText(getApplicationContext(), R.string.already_attempted, Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();

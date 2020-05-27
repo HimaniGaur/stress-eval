@@ -20,22 +20,38 @@ public class ResponseLocalStore {
     public void setQuestionnairesCompletedCounter(Integer value) {
         SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
         spEditor.putInt("questionnaires_completed_counter", value);
-        spEditor.commit();
+        spEditor.apply();
     }
 
-    public void setQuestionnaireResponse(String questionnaire, Integer[] response) {
+    public void setQuestionnaireResponse(String questionnaireCode, Integer[] response) {
         SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
         Integer score = new Integer(0);
         for (Integer i: response) {
             score += i;
         }
-        spEditor.putString(questionnaire + "_response", Arrays.toString(response));
-        spEditor.putInt(questionnaire + "_score", score);
-        spEditor.commit();
+        spEditor.putString(questionnaireCode + "_response", Arrays.toString(response));
+        spEditor.putInt(questionnaireCode + "_score", score);
+        spEditor.apply();
+    }
+
+    public String getQuestionnaireResponse(String questionnaireCode) {
+
+        return responseLocalDatabase.getString(questionnaireCode + "_response", "");
+
     }
 
     public Boolean isQuestionnaireAttempted(String qName) {
-        return responseLocalDatabase.contains(qName + "_score");
+        return responseLocalDatabase.contains(qName + "_response");
+    }
+
+    public void setResponseId(Integer id) {
+        SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
+        spEditor.putInt("response_id", id);
+        spEditor.apply();
+    }
+
+    public Integer getResponseId() {
+        return responseLocalDatabase.getInt("response_id", 0);
     }
 
 }

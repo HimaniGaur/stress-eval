@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 //import android.support.v7.app.AlertDialog;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,11 +16,17 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+
+import static com.stressevaluator.app.Constants.baseUrl;
+import static com.stressevaluator.app.Constants.getQuestionnaireCode;
 
 public class Questionnaire extends AppCompatActivity {
     private TextView textViewQuestion, textViewQuestionNum, textViewDesc;
@@ -27,7 +34,7 @@ public class Questionnaire extends AppCompatActivity {
     private RadioGroup rbGroup;
     private RadioButton rb1, rb2, rb3, rb4, rb5, rb6;
     JSONArray AllQuestions;
-    String questionnaireName;
+    String questionnaireCode;
     Integer responses[];
     UserLocalStore userLocalStore;
     ResponseLocalStore responseLocalStore;
@@ -59,7 +66,7 @@ public class Questionnaire extends AppCompatActivity {
 
         try {
             AllQuestions = new JSONArray(getIntent().getStringExtra("AllQuestions"));
-            questionnaireName = getIntent().getStringExtra("QuestionnaireName");
+            questionnaireCode = getIntent().getStringExtra("QuestionnaireCode");
             responses = new Integer[AllQuestions.length()];
             Log.d("Questionnaire", String.valueOf(responses.length));
             loadQuestion(0);
@@ -139,8 +146,8 @@ public class Questionnaire extends AppCompatActivity {
                         alertDialog.setMessage("Are you sure you want to submit?");
                         alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
-                                // Todo: Store the information of this questionnaire done in a file
-                                responseLocalStore.setQuestionnaireResponse(questionnaireName, responses);
+                                // Done: Store the information of this questionnaire done in a file
+                                responseLocalStore.setQuestionnaireResponse(questionnaireCode, responses);
                                 responseLocalStore.setQuestionnairesCompletedCounter(responseLocalStore.getQuestionnairesCompletedCounter()+1);
 
                                 // TODO: set timer to 3 days if it is the first questionnaire attempted
@@ -149,13 +156,12 @@ public class Questionnaire extends AppCompatActivity {
                                 }
 
                                 // TODO: Push the responses in database when all questionnaires are done
-                                if (responseLocalStore.getQuestionnairesCompletedCounter() == Constants.questionnaireNames.size()) {
-                                    ;
+                                if ( true /*responseLocalStore.getQuestionnairesCompletedCounter() == Constants.questionnaireNames.size()*/) {
+                                    new pushResponsesToDatabase().execute(
+                                            userLocalStore.getLoggedInUser().getUsername(),
+                                            responseLocalStore.getResponseId().toString(),
+                                            getIntent().getStringExtra("QuestionnaireCode"));
                                 }
-
-                                // Todo: change the activity back to StartQuestionnaire
-                                Intent intent = new Intent(Questionnaire.this, StartQuestionnaire.class);
-                                startActivity(intent);
                             }
                         });
                         alertDialog.setNegativeButton(android.R.string.no, null);
@@ -179,6 +185,62 @@ public class Questionnaire extends AppCompatActivity {
             });
         } else {
             buttonPrevQuestion.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private class pushResponsesToDatabase extends AsyncTask<String, String, JSONObject> {
+        String URL = baseUrl + "/storeUserResponses.php";
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+
+        @Override
+        protected JSONObject doInBackground(String... args) {
+            String username = args[0];
+            String response_id = args[1];
+            String code = args[2];
+            String responses = responseLocalStore.getQuestionnaireResponse(code);
+            ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
+            JSONParser jsonParser = new JSONParser();
+            JSONObject json = null;
+            
+            params.add(new BasicNameValuePair("username", username));
+            params.add(new BasicNameValuePair("response_id", response_id));
+            params.add(new BasicNameValuePair("questionnaireCode", code));
+            params.add(new BasicNameValuePair("responses", responses));
+
+            json = jsonParser.makeHttpRequest(URL, "POST", params);
+
+            try {
+                if (json.get("success").equals(0))
+                    return json;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            
+            return json;
+        }
+
+        @Override
+        protected void onPostExecute(JSONObject result) {
+            super.onPostExecute(result);
+            
+            if (result != null) {
+                try {
+                    Toast.makeText(getApplicationContext(), result.get("message").toString(), Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(Questionnaire.this, AllQuestionnaires.class);
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "Error: Server not responding. Try Again", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
