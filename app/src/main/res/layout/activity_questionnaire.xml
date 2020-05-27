@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp">
+    android:layout_margin="16dp"
+    android:overScrollMode="always">
 
     <TextView
         android:id="@+id/text_view_question_num"
@@ -11,6 +12,17 @@
         android:layout_width="wrap_content"
         android:text="@string/question_num"
         android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/text_view_question_short_desc"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/text_view_question_num"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
+        android:textSize="16sp"/>
+
     <TextView
         android:id="@+id/text_view_question"
         android:layout_width="match_parent"
@@ -18,44 +30,54 @@
         android:text="@string/loading"
         android:textSize="20sp"
         android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:gravity="center_horizontal"
         android:layout_above="@id/radio_group"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         />
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
         >
         <RadioButton
             android:id="@+id/radio_button1"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/option1"
             />
         <RadioButton
             android:id="@+id/radio_button2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/option2"
             />
         <RadioButton
             android:id="@+id/radio_button3"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/option3"
             />
         <RadioButton
             android:id="@+id/radio_button4"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/option4"
             />
         <RadioButton
             android:id="@+id/radio_button5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/option5"
+            />
+        <RadioButton
+            android:id="@+id/radio_button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/option6"
             />
     </RadioGroup>
 

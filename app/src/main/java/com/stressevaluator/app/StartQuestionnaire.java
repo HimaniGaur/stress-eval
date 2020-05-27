@@ -32,17 +32,19 @@ public class StartQuestionnaire extends AppCompatActivity {
         qDesc = findViewById(R.id.text_view_questionnaire_desc);
         buttonStartQues = findViewById(R.id.button_start_questionnaire);
 
+        final String qNameText = getIntent().getStringExtra("questionnaireName");
         String qDescText = getIntent().getStringExtra("questionnaireDesc")
                 .replace("\\n", "\n")
                 .replace("\"", "")
                 .replace("\\r", "");
-        qName.setText(getIntent().getStringExtra("questionnaireName"));
+
+        qName.setText(qNameText);
         qDesc.setText(qDescText);
 
         buttonStartQues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new GetAllQuestions().execute("");
+                new GetAllQuestions().execute(Constants.getQuestionnaireCode(qNameText));
             }
         });
     }
@@ -50,7 +52,7 @@ public class StartQuestionnaire extends AppCompatActivity {
     private class GetAllQuestions extends AsyncTask<String, String, JSONObject> {
         JSONParser jsonParser = new JSONParser();
         String URL = baseUrl + "/getAllQuestions.php";
-        String questionnaireName;
+        String questionnaireCode;
 
         @Override
         protected void onPreExecute() {
@@ -64,9 +66,9 @@ public class StartQuestionnaire extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-            questionnaireName = args[0];
+            questionnaireCode = args[0];
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("questionnaireName", questionnaireName));
+            params.add(new BasicNameValuePair("questionnaireName", questionnaireCode));
             JSONObject json = jsonParser.makeHttpRequest(URL, "POST", params);
             return json;
         }
@@ -81,7 +83,7 @@ public class StartQuestionnaire extends AppCompatActivity {
                     } else {
                         AllQuestions = result.getJSONArray("message");
                         Intent intent = new Intent(getApplicationContext(), Questionnaire.class);
-                        intent.putExtra("QuestionnaireName", questionnaireName);
+                        intent.putExtra("QuestionnaireCode", questionnaireCode);
                         intent.putExtra("AllQuestions", AllQuestions.toString());
                         startActivity(intent);
                     }

@@ -22,10 +22,10 @@ import org.json.JSONObject;
 import java.util.Arrays;
 
 public class Questionnaire extends AppCompatActivity {
-    private TextView textViewQuestion, textViewQuestionNum;
+    private TextView textViewQuestion, textViewQuestionNum, textViewDesc;
     private Button buttonNextQuestion, buttonPrevQuestion;
     private RadioGroup rbGroup;
-    private RadioButton rb1, rb2, rb3, rb4, rb5;
+    private RadioButton rb1, rb2, rb3, rb4, rb5, rb6;
     JSONArray AllQuestions;
     String questionnaireName;
     Integer responses[];
@@ -41,6 +41,7 @@ public class Questionnaire extends AppCompatActivity {
 
         textViewQuestion = findViewById(R.id.text_view_question);
         textViewQuestionNum = findViewById(R.id.text_view_question_num);
+        textViewDesc = findViewById(R.id.text_view_question_short_desc);
         buttonNextQuestion = findViewById(R.id.button_next_question);
         buttonPrevQuestion = findViewById(R.id.button_previous_question);
         rbGroup = findViewById(R.id.radio_group);
@@ -49,8 +50,12 @@ public class Questionnaire extends AppCompatActivity {
         rb3 = findViewById(R.id.radio_button3);
         rb4 = findViewById(R.id.radio_button4);
         rb5 = findViewById(R.id.radio_button5);
+        rb6 = findViewById(R.id.radio_button6);
         userLocalStore = new UserLocalStore(this);
         responseLocalStore = new ResponseLocalStore(this, userLocalStore.getLoggedInUser());
+
+        textViewDesc.setText(Constants.getShortDesc(getIntent().getStringExtra("QuestionnaireCode")));
+
 
         try {
             AllQuestions = new JSONArray(getIntent().getStringExtra("AllQuestions"));
@@ -72,6 +77,9 @@ public class Questionnaire extends AppCompatActivity {
         textViewQuestion.setText(question);
         textViewQuestionNum.setText(questionNum);
 
+        if (!getIntent().getStringExtra("QuestionnaireCode").equals("SUS"))
+            rb6.setVisibility(View.INVISIBLE);
+
         if (responses[questionCounter] == null)
             rbGroup.clearCheck();
         else {
@@ -92,6 +100,8 @@ public class Questionnaire extends AppCompatActivity {
                 case 5:
                     rb5.setChecked(true);
                     break;
+                case 6:
+                    rb6.setChecked(true);
                 default:
                     break;
             }
@@ -106,8 +116,7 @@ public class Questionnaire extends AppCompatActivity {
         buttonNextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!rb1.isChecked() && !rb2.isChecked() && !rb3.isChecked()
-                        && !rb4.isChecked() && !rb5.isChecked()) {
+                if (rbGroup.getCheckedRadioButtonId() == -1) {
                     Toast.makeText(getApplicationContext(), "Please select an option", Toast.LENGTH_SHORT).
                             show();
                 } else {
@@ -116,6 +125,7 @@ public class Questionnaire extends AppCompatActivity {
                     else if (rb3.isChecked()) responses[questionCounter] = 3;
                     else if (rb4.isChecked()) responses[questionCounter] = 4;
                     else if (rb5.isChecked()) responses[questionCounter] = 5;
+                    else if (rb6.isChecked()) responses[questionCounter] = 6;
 
                     if (questionCounter < (AllQuestions.length() - 1)) {
                         try {

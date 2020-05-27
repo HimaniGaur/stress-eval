@@ -84,7 +84,7 @@ public class AllQuestionnaires extends AppCompatActivity {
 
     private class GetQuestionnaireInfo extends AsyncTask<String, String, JSONObject> {
         JSONParser jsonParser = new JSONParser();
-        String URL = baseUrl + "/getQuestionnaireList.php";
+        String URL = baseUrl + "/getQuestionnaireDesc.php";
         String questionnaireName;
 
         @Override
