@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
                     sleep(2*1000);
 
                     if (userLocalStore.getUserLoggedIn() == true) {
-                        Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
+                        Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
                         startActivity(intent);
                     } else {
                         Intent intent = new Intent(getApplicationContext(), LoginRegisterActivity.class);

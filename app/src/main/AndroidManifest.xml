@@ -11,7 +11,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LoginRegisterActivity"/>
+        <activity android:name=".AllQuestionnaires"></activity>
+        <activity android:name=".LoginRegisterActivity" />
         <activity android:name=".StartQuestionnaire" />
         <activity android:name=".Questionnaire" />
 

@@ -150,7 +150,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         // set its responseLocalStore too
                         responseLocalStore = new ResponseLocalStore(getApplicationContext(), registeredUser);
 
-                        Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
+                        Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
                         startActivity(intent);
                         finish();
                     }

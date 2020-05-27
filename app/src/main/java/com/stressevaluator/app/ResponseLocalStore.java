@@ -34,4 +34,8 @@ public class ResponseLocalStore {
         spEditor.commit();
     }
 
+    public Boolean isQuestionnaireAttempted(String qName) {
+        return responseLocalDatabase.contains(qName + "_score");
+    }
+
 }
