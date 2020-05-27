@@ -32,15 +32,6 @@
         android:layout_centerInParent="true"/>
 
     <Button
-        android:id="@+id/button_GetResults"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Get Results"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/list_view_start_questionnaire"
-        />
-
-    <Button
         android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
