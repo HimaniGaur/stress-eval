@@ -30,6 +30,7 @@ public class Questionnaire extends AppCompatActivity {
     String questionnaireName;
     Integer responses[];
     UserLocalStore userLocalStore;
+    ResponseLocalStore responseLocalStore;
 
     private ColorStateList textColorDefaultRb;
 
@@ -49,6 +50,7 @@ public class Questionnaire extends AppCompatActivity {
         rb4 = findViewById(R.id.radio_button4);
         rb5 = findViewById(R.id.radio_button5);
         userLocalStore = new UserLocalStore(this);
+        responseLocalStore = new ResponseLocalStore(this, userLocalStore.getLoggedInUser());
 
         try {
             AllQuestions = new JSONArray(getIntent().getStringExtra("AllQuestions"));
@@ -128,8 +130,19 @@ public class Questionnaire extends AppCompatActivity {
                         alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 // Todo: Store the information of this questionnaire done in a file
-                                userLocalStore.setQuestionnaireResponse(questionnaireName, responses);
-                                // TODO: Push the responses in database
+                                responseLocalStore.setQuestionnaireResponse(questionnaireName, responses);
+                                responseLocalStore.setQuestionnairesCompletedCounter(responseLocalStore.getQuestionnairesCompletedCounter()+1);
+
+                                // TODO: set timer to 3 days if it is the first questionnaire attempted
+                                if (responseLocalStore.getQuestionnairesCompletedCounter() == 1) {
+                                    ;
+                                }
+
+                                // TODO: Push the responses in database when all questionnaires are done
+                                if (responseLocalStore.getQuestionnairesCompletedCounter() == Constants.questionnaireNames.size()) {
+                                    ;
+                                }
+
                                 // Todo: change the activity back to StartQuestionnaire
                                 Intent intent = new Intent(Questionnaire.this, StartQuestionnaire.class);
                                 startActivity(intent);

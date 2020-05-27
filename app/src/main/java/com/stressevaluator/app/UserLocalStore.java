@@ -21,7 +21,6 @@ public class UserLocalStore {
         spEditor.putString("password", user.password);
         spEditor.commit();
     }
-
     public User getLoggedInUser() {
         String username = userLocalDatabase.getString("username", "");
         String email = userLocalDatabase.getString("email", "");
@@ -43,17 +42,6 @@ public class UserLocalStore {
             return true;
         } else
             return false;
-    }
-
-    public void setQuestionnaireResponse(String questionnaire, Integer[] response) {
-        SharedPreferences.Editor spEditor = userLocalDatabase.edit();
-        Integer score = new Integer(0);
-        for (Integer i: response) {
-            score += i;
-        }
-        spEditor.putString(questionnaire + "_response", Arrays.toString(response));
-        spEditor.putInt(questionnaire + "_score", score);
-        spEditor.commit();
     }
 
     public void cleanUserData () {

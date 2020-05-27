@@ -1,5 +1,6 @@
 package com.stressevaluator.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
     int i=0;
 
     UserLocalStore userLocalStore;
+    ResponseLocalStore responseLocalStore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +146,9 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         User registeredUser = new User(name, email, password);
                         userLocalStore.storeUserData(registeredUser);
                         userLocalStore.setUserLoggedIn(true);
+
+                        // set its responseLocalStore too
+                        responseLocalStore = new ResponseLocalStore(getApplicationContext(), registeredUser);
 
                         Intent intent = new Intent(getApplicationContext(), StartQuestionnaire.class);
                         startActivity(intent);
