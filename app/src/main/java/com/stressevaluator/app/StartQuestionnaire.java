@@ -31,7 +31,7 @@ public class StartQuestionnaire extends AppCompatActivity {
     private ListView listView;
 
     private UserLocalStore userLocalStore;
-    SharedPreferences sharedPreferences;
+    private ResponseLocalStore responseLocalStore;
 
     JSONArray AllQuestions;
 
@@ -40,11 +40,13 @@ public class StartQuestionnaire extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_questionnaire);
 
-        userLocalStore = new UserLocalStore(this);
         btnLogout = findViewById(R.id.button_logout);
         helloMessage = findViewById(R.id.text_view_hello_message);
         listView = findViewById(R.id.list_view_start_questionnaire);
-        sharedPreferences = getSharedPreferences("userDetails", 0);
+        userLocalStore = new UserLocalStore(this);
+        responseLocalStore = new ResponseLocalStore(this, userLocalStore.getLoggedInUser());
+
+
         helloMessage.setText("Hello, " + userLocalStore.getLoggedInUser().username);
 
         final List<String> questionnaireNames = Constants.questionnaireNames;
@@ -62,7 +64,7 @@ public class StartQuestionnaire extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 String questionnaire = questionnaireNames.get(i);
 
-                if (sharedPreferences.contains(questionnaire + "_score")) {
+                if (responseLocalStore.isQuestionnaireAttempted(questionnaire)) {
                     Log.d("StartQ.ListView", "Already attempted");
                     Toast.makeText(getApplicationContext(), R.string.already_attempted, Toast.LENGTH_LONG).show();
                 } else {
