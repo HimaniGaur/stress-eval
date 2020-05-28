@@ -25,7 +25,7 @@
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:fontFamily="sans-serif-light"
-            android:hint="Username (SID)"
+            android:hint="Username (10 length SID)"
             android:textColor="#FF192133"
             android:textColorHint="#A0192133" />
 

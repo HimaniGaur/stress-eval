@@ -1,13 +1,18 @@
 package com.stressevaluator.app;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.support.v7.app.AppCompatActivity;
+>>>>>>> migrated to androidx, added firebase
 import android.os.Bundle;
 
 public class SplashScreen extends AppCompatActivity {
 
     UserLocalStore userLocalStore;
     ResponseLocalStore responseLocalStore;
+    AppBroadcastReceiver appBroadcastReceiver = new AppBroadcastReceiver();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +20,9 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         userLocalStore = new UserLocalStore(this);
         responseLocalStore = new ResponseLocalStore(this, userLocalStore.getLoggedInUser());
+
+        /*IntentFilter intentFilter = new IntentFilter(ConnectivityManager.EXTRA_NO_CONNECTIVITY);
+        registerReceiver(appBroadcastReceiver, intentFilter);*/
 
         Thread background = new Thread() {
             public void run() {
@@ -37,5 +45,10 @@ public class SplashScreen extends AppCompatActivity {
         };
 
         background.start();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 }

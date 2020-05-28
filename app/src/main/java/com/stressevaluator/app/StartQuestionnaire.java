@@ -18,6 +18,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static com.stressevaluator.app.Constants.baseUrl;
+import static com.stressevaluator.app.Constants.getQuestionnaireCode;
+import static com.stressevaluator.app.Constants.questionnaireNames;
 
 public class StartQuestionnaire extends AppCompatActivity {
     private JSONArray AllQuestions;
@@ -44,6 +46,7 @@ public class StartQuestionnaire extends AppCompatActivity {
         buttonStartQues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(getApplicationContext(), "Please wait", Toast.LENGTH_SHORT).show();
                 new GetAllQuestions().execute(Constants.getQuestionnaireCode(qNameText));
             }
         });

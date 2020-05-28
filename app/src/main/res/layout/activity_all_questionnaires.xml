@@ -32,6 +32,17 @@
         android:layout_centerInParent="true"/>
 
     <Button
+        android:id="@+id/submit_responses"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit responses"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        />
+
+    <Button
         android:id="@+id/button_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
