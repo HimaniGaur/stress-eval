@@ -2,6 +2,8 @@ package com.stressevaluator.app;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,17 +11,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
+
+import android.util.Log;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+
 import java.util.ArrayList;
 
 import static com.stressevaluator.app.Constants.baseUrl;
 
-public class LoginRegisterActivity extends AppCompatActivity {
 
+
+public class LoginRegisterActivity extends AppCompatActivity {
 
     EditText editEmail, editPassword, editName;
     Button btnSignIn, btnRegister;
@@ -33,14 +47,37 @@ public class LoginRegisterActivity extends AppCompatActivity {
     UserLocalStore userLocalStore;
     ResponseLocalStore responseLocalStore;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        final String TAG = "LoginRegisterActivity";
+        
         super.onCreate(savedInstanceState);
-        /*if (Build.VERSION.SDK_INT> 9) {
-            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy().Builder().permitAll().build();
-            StrictMode.setThreadPolicy(policy);
-            System.out.println("******* MY thread is now configured to allow connections *******");
-        }*/
+
+        FirebaseMessaging.getInstance().subscribeToTopic("test");
+
+        FirebaseInstanceId.getInstance().getInstanceId()
+                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w(TAG, "getInstanceId failed", task.getException());
+                            return;
+                        }
+
+                        // Get new Instance ID token
+                        String token = task.getResult().getToken();
+
+                        // Log and toast
+                        String msg = getString(R.string.msg_token_fmt, token);
+                        Log.d(TAG, msg);
+                        Toast.makeText(LoginRegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
         setContentView(R.layout.activity_login_register);
 
         editEmail= findViewById(R.id.editEmail);
