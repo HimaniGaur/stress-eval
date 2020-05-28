@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 //import android.support.v7.app.AlertDialog;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import static com.stressevaluator.app.Constants.baseUrl;
-import static com.stressevaluator.app.Constants.getQuestionnaireCode;
 
 public class Questionnaire extends AppCompatActivity {
     private TextView textViewQuestion, textViewQuestionNum, textViewDesc;

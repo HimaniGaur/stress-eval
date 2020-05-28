@@ -1,12 +1,13 @@
 package com.stressevaluator.app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 
 
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import android.os.Bundle;
 import android.view.View;
@@ -127,19 +128,13 @@ public class LoginRegisterActivity extends AppCompatActivity {
                 if(i==0)
                 {
                     i=1;
-                    editName.setHint("Username");
+                    editName.setHint("Username (10 length SID)");
                     editEmail.setVisibility(View.VISIBLE);
                     btnRegister.setText("CREATE ACCOUNT");
                 }
                 else{
-/*                  btnRegister.setText("REGISTER");
-                    editEmail.setVisibility(View.GONE);
-                    i=0;
-*/
-
                     AttemptLogin attemptLogin= new AttemptLogin();
                     attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),editEmail.getText().toString());
-
                 }
             }
         });
@@ -177,10 +172,6 @@ public class LoginRegisterActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute(JSONObject result) {
-
-            // dismiss the dialog once product deleted
-            // Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
-
             try {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),result.getString("message"),Toast.LENGTH_LONG).show();
@@ -195,7 +186,12 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         // set its responseLocalStore too
                         responseLocalStore = new ResponseLocalStore(getApplicationContext(), registeredUser);
 
-                        Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
+                        Intent intent = null;
+                        if (i == 1) { //user registered
+                            intent = new Intent(getApplicationContext(), ClinicalProfile.class);
+                        } else {
+                            intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
+                        }
                         startActivity(intent);
                         finish();
                     }
