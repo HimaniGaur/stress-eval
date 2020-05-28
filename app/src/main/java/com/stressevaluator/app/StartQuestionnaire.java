@@ -2,7 +2,7 @@ package com.stressevaluator.app;
 
 import android.content.Intent;
 import android.os.AsyncTask;
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +18,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import static com.stressevaluator.app.Constants.baseUrl;
-import static com.stressevaluator.app.Constants.getQuestionnaireCode;
-import static com.stressevaluator.app.Constants.questionnaireNames;
 
 public class StartQuestionnaire extends AppCompatActivity {
     private JSONArray AllQuestions;
@@ -46,7 +44,6 @@ public class StartQuestionnaire extends AppCompatActivity {
         buttonStartQues.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Please wait", Toast.LENGTH_SHORT).show();
                 new GetAllQuestions().execute(Constants.getQuestionnaireCode(qNameText));
             }
         });

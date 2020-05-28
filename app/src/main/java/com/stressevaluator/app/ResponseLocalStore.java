@@ -2,7 +2,6 @@ package com.stressevaluator.app;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.Arrays;
 
@@ -33,8 +32,6 @@ public class ResponseLocalStore {
         spEditor.putString(questionnaireCode + "_response", Arrays.toString(response));
         spEditor.putInt(questionnaireCode + "_score", score);
         spEditor.apply();
-
-        Log.i("ResponseLocalStore", "Responses stored in file successfully");
     }
 
     public String getQuestionnaireResponse(String questionnaireCode) {
@@ -43,8 +40,8 @@ public class ResponseLocalStore {
 
     }
 
-    public Boolean isQuestionnaireAttempted(String qCode) {
-        return responseLocalDatabase.contains(qCode + "_response");
+    public Boolean isQuestionnaireAttempted(String qName) {
+        return responseLocalDatabase.contains(qName + "_response");
     }
 
     public void setResponseId(Integer id) {
@@ -54,18 +51,7 @@ public class ResponseLocalStore {
     }
 
     public Integer getResponseId() {
-        return responseLocalDatabase.getInt("response_id", 1);
-    }
-
-    public void setResponsesToNull() {
-        // response, score, response_id, completedQuestionnaireCount
-        Integer curr_resp_id = responseLocalDatabase.getInt("response_id", 1);
-        SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
-        spEditor.clear();
-        spEditor.apply();
-
-        setResponseId(curr_resp_id);
-        setQuestionnairesCompletedCounter(0);
+        return responseLocalDatabase.getInt("response_id", 0);
     }
 
 }

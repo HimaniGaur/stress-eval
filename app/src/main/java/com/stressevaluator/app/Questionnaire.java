@@ -4,8 +4,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+//import android.support.v7.app.AlertDialog;
 import android.os.AsyncTask;
-import androidx.appcompat.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,8 +23,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static com.stressevaluator.app.Constants.baseUrl;
+import static com.stressevaluator.app.Constants.getQuestionnaireCode;
 
 public class Questionnaire extends AppCompatActivity {
     private TextView textViewQuestion, textViewQuestionNum, textViewDesc;
@@ -33,7 +36,6 @@ public class Questionnaire extends AppCompatActivity {
     JSONArray AllQuestions;
     String questionnaireCode;
     Integer responses[];
-    AlertDialog alertDialog;
     UserLocalStore userLocalStore;
     ResponseLocalStore responseLocalStore;
 
@@ -61,29 +63,6 @@ public class Questionnaire extends AppCompatActivity {
 
         textViewDesc.setText(Constants.getShortDesc(getIntent().getStringExtra("QuestionnaireCode")));
 
-        alertDialog = new AlertDialog.Builder(Questionnaire.this)
-        .setTitle(R.string.app_name)
-        .setMessage("Are you sure you want to submit?")
-        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-
-                responseLocalStore.setQuestionnaireResponse(questionnaireCode, responses);
-                responseLocalStore.setQuestionnairesCompletedCounter(responseLocalStore.getQuestionnairesCompletedCounter()+1);
-
-                // TODO: set timer to 3 days if it is the first questionnaire attempted
-                if(responseLocalStore.getQuestionnairesCompletedCounter() == 1) {
-                    startService(new Intent(getApplicationContext(), BroadcastService.class));
-                    Log.i("Timer", "Started service");
-                }
-
-                new Questionnaire.pushResponsesToDatabase().execute(
-                        userLocalStore.getLoggedInUser().getUsername(),
-                        responseLocalStore.getResponseId().toString(),
-                        questionnaireCode);
-            }
-        })
-        .setNegativeButton(android.R.string.no, null).create();
-
 
         try {
             AllQuestions = new JSONArray(getIntent().getStringExtra("AllQuestions"));
@@ -96,16 +75,10 @@ public class Questionnaire extends AppCompatActivity {
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        alertDialog.dismiss();
-    }
-
     private void loadQuestion(final Integer questionCounter) throws JSONException {
-//        Log.d("Questionnaire", "response: " + Arrays.toString(responses) + ", " + questionCounter);
+        Log.d("Questionnaire", "response: " + Arrays.toString(responses) + ", " + questionCounter);
         String jString = AllQuestions.getString(questionCounter);
-        final String question = new JSONObject(jString).getString("Question");
+        String question = new JSONObject(jString).getString("Question");
         String questionNum = "Question " + (questionCounter+1) + "/" + AllQuestions.length();
 
         textViewQuestion.setText(question);
@@ -168,7 +141,31 @@ public class Questionnaire extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     } else {
-                        alertDialog.show();
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(Questionnaire.this);
+                        alertDialog.setTitle(R.string.app_name);
+                        alertDialog.setMessage("Are you sure you want to submit?");
+                        alertDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                // Done: Store the information of this questionnaire done in a file
+                                responseLocalStore.setQuestionnaireResponse(questionnaireCode, responses);
+                                responseLocalStore.setQuestionnairesCompletedCounter(responseLocalStore.getQuestionnairesCompletedCounter()+1);
+
+                                // TODO: set timer to 3 days if it is the first questionnaire attempted
+                                if (responseLocalStore.getQuestionnairesCompletedCounter() == 1) {
+                                    ;
+                                }
+
+                                // TODO: Push the responses in database when all questionnaires are done
+                                if ( true /*responseLocalStore.getQuestionnairesCompletedCounter() == Constants.questionnaireNames.size()*/) {
+                                    new pushResponsesToDatabase().execute(
+                                            userLocalStore.getLoggedInUser().getUsername(),
+                                            responseLocalStore.getResponseId().toString(),
+                                            getIntent().getStringExtra("QuestionnaireCode"));
+                                }
+                            }
+                        });
+                        alertDialog.setNegativeButton(android.R.string.no, null);
+                        alertDialog.create().show();
                     }
                 }
             }
@@ -194,6 +191,7 @@ public class Questionnaire extends AppCompatActivity {
     private class pushResponsesToDatabase extends AsyncTask<String, String, JSONObject> {
         String URL = baseUrl + "/storeUserResponses.php";
 
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -202,7 +200,6 @@ public class Questionnaire extends AppCompatActivity {
 
         @Override
         protected JSONObject doInBackground(String... args) {
-            Log.i("StoreUserResp", "stored user responses");
             String username = args[0];
             String response_id = args[1];
             String code = args[2];
@@ -210,7 +207,7 @@ public class Questionnaire extends AppCompatActivity {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             JSONParser jsonParser = new JSONParser();
             JSONObject json = null;
-
+            
             params.add(new BasicNameValuePair("username", username));
             params.add(new BasicNameValuePair("response_id", response_id));
             params.add(new BasicNameValuePair("questionnaireCode", code));
@@ -218,24 +215,26 @@ public class Questionnaire extends AppCompatActivity {
 
             json = jsonParser.makeHttpRequest(URL, "POST", params);
 
+            try {
+                if (json.get("success").equals(0))
+                    return json;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            
             return json;
         }
 
         @Override
         protected void onPostExecute(JSONObject result) {
             super.onPostExecute(result);
-
+            
             if (result != null) {
                 try {
                     Toast.makeText(getApplicationContext(), result.get("message").toString(), Toast.LENGTH_SHORT).show();
 
-                    if (result.get("success").equals(1)) {
-                        Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        responseLocalStore.setQuestionnairesCompletedCounter(responseLocalStore.getQuestionnairesCompletedCounter()-1);
-                    }
+                    Intent intent = new Intent(Questionnaire.this, AllQuestionnaires.class);
+                    startActivity(intent);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -244,5 +243,4 @@ public class Questionnaire extends AppCompatActivity {
             }
         }
     }
-
 }

@@ -13,5 +13,4 @@
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
     <string name="motivation_message">Complete all of them within 3 days of first questionnaire submission in order to submit them!</string>
     <string name="already_attempted">You have already attempted this test. You can give this test again only when the admin approves it</string>
-    <string name="hooray_completed">Hooray! You have completed all the questionnaires. Please come back next time :)</string>
 </resources>
