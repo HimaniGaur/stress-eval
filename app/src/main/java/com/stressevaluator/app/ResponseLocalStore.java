@@ -50,6 +50,21 @@ public class ResponseLocalStore {
         spEditor.apply();
     }
 
+    public Integer getResponseId() {
+        return responseLocalDatabase.getInt("response_id", 0);
+    }
+
+    public void setResponsesToNull() {
+        // response, score, response_id, completedQuestionnaireCount
+        Integer curr_resp_id = responseLocalDatabase.getInt("response_id", 1);
+        SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
+        spEditor.clear();
+        spEditor.apply();
+
+        setResponseId(curr_resp_id);
+        setQuestionnairesCompletedCounter(0);
+    }
+
     public void setCPSResponseCompleted(String username) {
         SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
         spEditor.putBoolean(username + "_CPS", true);
@@ -58,11 +73,6 @@ public class ResponseLocalStore {
 
     public boolean getCPSResponseCompleted(String username) {
         return responseLocalDatabase.contains(username + "_CPS");
-    }
-
-
-    public Integer getResponseId() {
-        return responseLocalDatabase.getInt("response_id", 0);
     }
 
 }

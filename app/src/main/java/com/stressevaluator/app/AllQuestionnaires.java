@@ -3,7 +3,6 @@ package com.stressevaluator.app;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +10,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -25,8 +26,8 @@ import static com.stressevaluator.app.Constants.getQuestionnaireCode;
 
 public class AllQuestionnaires extends AppCompatActivity {
 
-    private Button btnSection1, btnLogout;
-    private TextView helloMessage;
+    private Button btnSubmitResponses, btnLogout;
+    private TextView helloMessage, textViewMotivation;
     private ListView listView;
 
     private UserLocalStore userLocalStore;
@@ -38,7 +39,9 @@ public class AllQuestionnaires extends AppCompatActivity {
         setContentView(R.layout.activity_all_questionnaires);
 
         btnLogout = findViewById(R.id.button_logout);
+//        btnSubmitResponses = findViewById(R.id.submit_responses);
         helloMessage = findViewById(R.id.text_view_hello_message);
+        textViewMotivation = findViewById(R.id.text_view_motivation_message);
         listView = findViewById(R.id.list_view_start_questionnaire);
         userLocalStore = new UserLocalStore(this);
         responseLocalStore = new ResponseLocalStore(this, userLocalStore.getLoggedInUser());
@@ -47,29 +50,39 @@ public class AllQuestionnaires extends AppCompatActivity {
         helloMessage.setText("Hello, " + userLocalStore.getLoggedInUser().username);
 
         final List<String> questionnaireNames = Constants.questionnaireNames;
-
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
-                this,
-                android.R.layout.simple_list_item_1,
-                questionnaireNames
-        );
-
-        listView.setAdapter(arrayAdapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                String questionnaire = questionnaireNames.get(i);
-                String questionnaireCode = getQuestionnaireCode(questionnaire);
-
-                if (responseLocalStore.isQuestionnaireAttempted(questionnaireCode)) {
-                    Toast.makeText(getApplicationContext(), R.string.already_attempted, Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
-                    new GetQuestionnaireInfo().execute(questionnaire);
-                }
+        for (int idx = 0; idx < questionnaireNames.size();idx++) {
+            if (responseLocalStore.isQuestionnaireAttempted(getQuestionnaireCode(questionnaireNames.get(idx)))) {
+                questionnaireNames.remove(idx);
+                idx--;
             }
-        });
+        }
+
+        if (questionnaireNames.isEmpty()) {
+            textViewMotivation.setText(R.string.hooray_completed);
+        } else {
+            ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(
+                    this,
+                    android.R.layout.simple_list_item_1,
+                    questionnaireNames
+            );
+
+            listView.setAdapter(arrayAdapter);
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String questionnaire = questionnaireNames.get(i);
+                    String questionnaireCode = getQuestionnaireCode(questionnaire);
+
+                    if (responseLocalStore.isQuestionnaireAttempted(questionnaireCode)) {
+                        Toast.makeText(getApplicationContext(), R.string.already_attempted, Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Please wait...", Toast.LENGTH_SHORT).show();
+                        new GetQuestionnaireInfo().execute(questionnaire);
+                    }
+                }
+            });
+        }
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,4 +141,6 @@ public class AllQuestionnaires extends AppCompatActivity {
             }
         }
     }
+
+
 }

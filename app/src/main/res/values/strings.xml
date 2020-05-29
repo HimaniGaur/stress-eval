@@ -12,6 +12,7 @@
     <string name="question_num">Question x/x</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
     <string name="motivation_message">Complete all the questionnaires within 3 days of submitting the first questionnaire to get your evaluation completed!!</string>
+    <string name="hooray_completed">Hooray! You have completed all the tests! Please come back for the next evaluation session\nThank you</string>
     <string name="already_attempted">You have already attempted this test. You can give this test again only when the admin approves it</string>
     <string-array name="gender">
         <item></item>
