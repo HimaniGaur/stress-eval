@@ -49,14 +49,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
-            if (/* Check if data needs to be processed by long running job */ true) {
-                // For long-running tasks (10 seconds or more) use WorkManager.
-                scheduleJob();
-            } else {
-                // Handle message within 10 seconds
-                handleNow();
-            }
-
         }
 
         // Check if message contains a notification payload.
@@ -75,19 +67,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
 
         registerToken(token);
     }
-
-    private void scheduleJob() {
-        // [START dispatch_job]
-        OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
-                .build();
-        WorkManager.getInstance().beginWith(work).enqueue();
-        // [END dispatch_job]
-    }
-
-    private void handleNow() {
-        Log.d(TAG, "Short lived task is done.");
-    }
-
 
 
     private void registerToken(String token) {

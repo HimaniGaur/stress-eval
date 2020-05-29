@@ -56,12 +56,11 @@ public class LoginRegisterActivity extends AppCompatActivity {
         
         super.onCreate(savedInstanceState);
 
-        //FirebaseMessaging.getInstance().subscribeToTopic("test");
 
         FirebaseMessaging.getInstance().subscribeToTopic("test").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),"Success",Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Subscribed to test topic",Toast.LENGTH_LONG).show();
             }
         });
 
