@@ -11,58 +11,67 @@
     <string name="loading">Loading...</string>
     <string name="question_num">Question x/x</string>
     <string name="msg_token_fmt" translatable="false">InstanceID Token: %s</string>
-    <string name="motivation_message">Complete all of them within 3 days of first questionnaire submission in order to submit them!</string>
+    <string name="motivation_message">Complete all the questionnaires within 3 days of submitting the first questionnaire to get your evaluation completed!!</string>
     <string name="already_attempted">You have already attempted this test. You can give this test again only when the admin approves it</string>
     <string-array name="gender">
+        <item></item>
         <item>Female</item>
         <item>Male</item>
         <item>Other</item>
     </string-array>
     <string-array name="yes_no">
+        <item></item>
         <item>Yes</item>
         <item>No</item>
     </string-array>
     <string-array name="cgpa_buckets">
-        <item>Above 8</item>
+        <item></item>
+        <item>&gt; 8</item>
         <item>6 - 8</item>
-        <item>Less than 6</item>
+        <item>&lt; 6</item>
     </string-array>
     <string-array name="yes_no_not_applicable">
+        <item></item>
         <item>Yes</item>
         <item>No</item>
         <item>Not Applicable</item>
     </string-array>
     <string-array name="involvement">
-        <item>Not at all involved</item>
-        <item>Faintly involved</item>
+        <item></item>
+        <item>Not at all</item>
+        <item>Faint</item>
         <item>Neutral</item>
-        <item>Actively involved</item>
-        <item>Very actively involved</item>
+        <item>Active</item>
+        <item>Very active</item>
     </string-array>
     <string-array name="edu_levels">
+        <item></item>
         <item>Uneducated</item>
-        <item>Matric (10th)</item>
-        <item>Higher Secondary (12th)</item>
+        <item>Matric</item>
+        <item>Higher Secondary</item>
         <item>Undergraduate</item>
         <item>Postgraduate</item>
         <item>Phd</item>
     </string-array>
     <string-array name="family_annual_income">
-        <item>Less than 2.5 Lakhs</item>
-        <item>2.5 - 10 lakhs</item>
-        <item>More than 10 lakhs</item>
+        <item></item>
+        <item>&lt; 2.5 lac</item>
+        <item>2.5-10 lac</item>
+        <item>&gt; 10 lac</item>
     </string-array>
     <string-array name="year">
+        <item></item>
         <item>First</item>
         <item>Second</item>
         <item>Third</item>
         <item>Fourth</item>
     </string-array>
     <string-array name="branch">
+        <item></item>
         <item>CSE</item>
         <item>ECE</item>
         <item>Electrical</item>
-        <item>Mettalurgy</item>
+        <item>Metallurgy</item>
         <item>Production</item>
         <item>Mechanical</item>
         <item>Civil</item>

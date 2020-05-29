@@ -200,7 +200,10 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         if (i == 1) { //user registered
                             intent = new Intent(getApplicationContext(), ClinicalProfile.class);
                         } else {
-                            intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
+                            if (responseLocalStore.getCPSResponseCompleted(userLocalStore.getLoggedInUser().getUsername()))
+                                intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
+                            else
+                                intent = new Intent(getApplicationContext(), ClinicalProfile.class);
                         }
                         startActivity(intent);
                         finish();

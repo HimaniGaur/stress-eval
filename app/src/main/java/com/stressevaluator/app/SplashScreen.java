@@ -24,8 +24,13 @@ public class SplashScreen extends AppCompatActivity {
                     responseLocalStore.setResponseId(1);
 
                     if (userLocalStore.getUserLoggedIn() == true) {
-                        Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
-                        startActivity(intent);
+                        if (responseLocalStore.getCPSResponseCompleted(userLocalStore.getLoggedInUser().getUsername())) {
+                            Intent intent = new Intent(getApplicationContext(), AllQuestionnaires.class);
+                            startActivity(intent);
+                        } else {
+                            Intent intent = new Intent(getApplicationContext(), ClinicalProfile.class);
+                            startActivity(intent);
+                        }
                     } else {
                         Intent intent = new Intent(getApplicationContext(), LoginRegisterActivity.class);
                         startActivity(intent);

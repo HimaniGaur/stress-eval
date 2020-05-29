@@ -50,6 +50,17 @@ public class ResponseLocalStore {
         spEditor.apply();
     }
 
+    public void setCPSResponseCompleted(String username) {
+        SharedPreferences.Editor spEditor = responseLocalDatabase.edit();
+        spEditor.putBoolean(username + "_CPS", true);
+        spEditor.apply();
+    }
+
+    public boolean getCPSResponseCompleted(String username) {
+        return responseLocalDatabase.contains(username + "_CPS");
+    }
+
+
     public Integer getResponseId() {
         return responseLocalDatabase.getInt("response_id", 0);
     }
