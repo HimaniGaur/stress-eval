@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -108,8 +109,13 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     editEmail.setVisibility(View.GONE);
                 }
                 else{
-                    AttemptLogin attemptLogin= new AttemptLogin();
-                    attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),"");
+
+                    if (TextUtils.isEmpty(editName.getText()) || TextUtils.isEmpty(editPassword.getText()) ) {
+                        Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AttemptLogin attemptLogin = new AttemptLogin();
+                        attemptLogin.execute(editName.getText().toString(), editPassword.getText().toString(), "");
+                    }
 
                     String username = editName.getText().toString();
                     String password = editPassword.getText().toString();
@@ -133,8 +139,12 @@ public class LoginRegisterActivity extends AppCompatActivity {
                     btnRegister.setText("CREATE ACCOUNT");
                 }
                 else{
-                    AttemptLogin attemptLogin= new AttemptLogin();
-                    attemptLogin.execute(editName.getText().toString(),editPassword.getText().toString(),editEmail.getText().toString());
+                    if (TextUtils.isEmpty(editName.getText()) || TextUtils.isEmpty(editPassword.getText()) || TextUtils.isEmpty(editEmail.getText())) {
+                        Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
+                    } else {
+                        AttemptLogin attemptLogin = new AttemptLogin();
+                        attemptLogin.execute(editName.getText().toString(), editPassword.getText().toString(), editEmail.getText().toString());
+                    }
                 }
             }
         });

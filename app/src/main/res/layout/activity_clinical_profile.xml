@@ -1,359 +1,359 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="16dp">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Clinical Profile Sheet"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
+    <HorizontalScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Age" />
+                <TextView
+                    android:id="@+id/tv_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Age" />
 
-            <EditText
-                android:id="@+id/edit_text_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:hint="Enter age"
-                android:inputType="number" />
-        </TableRow>
+                <EditText
+                    android:id="@+id/edit_text_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:hint="Enter age"
+                    android:inputType="number" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_below="@id/tv_age"
-                android:text="Gender" />
+                <TextView
+                    android:id="@+id/tv_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Gender" />
 
-            <Spinner
-                android:id="@+id/spinner_gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/gender" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/gender" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_branch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_below="@id/tv_age"
-                android:text="Branch" />
+                <TextView
+                    android:id="@+id/tv_branch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Branch" />
 
-            <Spinner
-                android:id="@+id/spinner_branch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/branch" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_branch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/branch" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_below="@id/tv_branch"
-                android:text="Year" />
+                <TextView
+                    android:id="@+id/tv_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Year" />
 
-            <Spinner
-                android:id="@+id/spinner_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/year" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/year" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_day_scholar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Day Scholar (Yes/No)" />
+                <TextView
+                    android:id="@+id/tv_day_scholar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Day Scholar (Yes/No)" />
 
-            <Spinner
-                android:id="@+id/day_scholar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
+                <Spinner
+                    android:id="@+id/day_scholar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
 
-        </TableRow>
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_dasa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="DASA Student" />
+                <TextView
+                    android:id="@+id/tv_dasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="DASA Student" />
 
-            <Spinner
-                android:id="@+id/dasa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/dasa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_drop_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Dropped year for JEE?" />
+                <TextView
+                    android:id="@+id/tv_drop_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Dropped year for JEE?" />
 
-            <Spinner
-                android:id="@+id/drop_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/drop_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_fam_income"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Annual Family Income" />
+                <TextView
+                    android:id="@+id/tv_fam_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Annual Family Income" />
 
-            <Spinner
-                android:id="@+id/spinner_family_income"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/family_annual_income" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_family_income"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/family_annual_income" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_num_fam_members"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="No of family members" />
+                <TextView
+                    android:id="@+id/tv_num_fam_members"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="No of family members" />
 
-            <EditText
-                android:id="@+id/num_members_family"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:hint="Enter number"
-                android:inputType="number" />
-        </TableRow>
+                <EditText
+                    android:id="@+id/num_members_family"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:hint="Enter number"
+                    android:inputType="number" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_edu_mother"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Mother's  education level" />
+                <TextView
+                    android:id="@+id/tv_edu_mother"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Mother education level" />
 
-            <Spinner
-                android:id="@+id/spinner_edu_mother"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/edu_levels" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_edu_mother"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/edu_levels" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_edu_father"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Father's education level" />
+                <TextView
+                    android:id="@+id/tv_edu_father"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Father education level" />
 
-            <Spinner
-                android:id="@+id/spinner_edu_father"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/edu_levels" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_edu_father"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/edu_levels" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_same_edu_bg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Family similarity \nin education"
-                android:tooltipText="A family member with the same educational background as yours" />
+                <TextView
+                    android:id="@+id/tv_same_edu_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Family similarity in education"
+                    android:tooltipText="A family member with the same educational background as yours" />
 
-            <Spinner
-                android:id="@+id/same_edu_bg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/same_edu_bg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_tech_soc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Involvement in\ntechnical societies"
-                android:tooltipText="Rate your involvement in technical societies" />
+                <TextView
+                    android:id="@+id/tv_tech_soc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Involvement in tech societies"
+                    android:tooltipText="Rate your involvement in technical societies" />
 
-            <Spinner
-                android:id="@+id/spinner_tech_societies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/involvement" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_tech_societies"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/involvement" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_cult_clubs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Involvement in\ncultural clubs"
-                android:tooltipText="Rate your involvement in cultural clubs" />
+                <TextView
+                    android:id="@+id/tv_cult_clubs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Involvement in cultural clubs"
+                    android:tooltipText="Rate your involvement in cultural clubs" />
 
-            <Spinner
-                android:id="@+id/spinner_cultural_clubs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/involvement" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_cultural_clubs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/involvement" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_placed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Placed?" />
+                <TextView
+                    android:id="@+id/tv_placed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Placed?" />
 
-            <Spinner
-                android:id="@+id/spinner_placed"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no_not_applicable" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_placed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no_not_applicable" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_cgpa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="CGPA" />
+                <TextView
+                    android:id="@+id/tv_cgpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="CGPA" />
 
-            <Spinner
-                android:id="@+id/spinner_cgpa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/cgpa_buckets" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_cgpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/cgpa_buckets" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_scstobc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="SC/ST/OBC" />
+                <TextView
+                    android:id="@+id/tv_scstobc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="SC/ST/OBC" />
 
-            <Spinner
-                android:id="@+id/spinner_scstobc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_scstobc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_pwd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="PwD" />
+                <TextView
+                    android:id="@+id/tv_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="PwD" />
 
-            <Spinner
-                android:id="@+id/spinner_pwd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
-        </TableRow>
+                <Spinner
+                    android:id="@+id/spinner_pwd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
+            </TableRow>
 
-        <TableRow>
+            <TableRow android:layout_marginTop="1dp">
 
-            <TextView
-                android:id="@+id/tv_single_child"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:text="Single Child" />
+                <TextView
+                    android:id="@+id/tv_single_child"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:text="Single Child" />
 
-            <Spinner
-                android:id="@+id/spinner_single_child"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:entries="@array/yes_no" />
-        </TableRow>
-    </TableLayout>
+                <Spinner
+                    android:id="@+id/spinner_single_child"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:entries="@array/yes_no" />
+            </TableRow>
 
-    <Button
-        android:id="@+id/btn_submit_cps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="Submit" />
-</RelativeLayout>
+            <TableRow android:layout_marginTop="1dp">
+
+                <Button
+                    android:id="@+id/btn_submit_cps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_span="3"
+                    android:gravity="center"
+                    android:text="Submit"
+                    android:textAlignment="center" />
+            </TableRow>
+
+        </TableLayout>
+    </HorizontalScrollView>
+</ScrollView>
