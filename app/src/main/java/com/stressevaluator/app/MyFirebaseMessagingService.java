@@ -45,8 +45,27 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
     public void onMessageReceived(RemoteMessage remoteMessage) {
 
 
+
+        Log.d(TAG, "on message received");
+
+        final Context context = this;
+        Intent intent = new Intent(this, MyFirebaseMessagingService.class);
+        final PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("FTest")
+                .setContentText("Firebabse notification test")
+                .setContentIntent(pIntent)
+                .build();
+
+
+        NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(0, noti);
+
+
         // Check if message contains a data payload.
-        if (remoteMessage.getData().size() > 0) {
+        /*if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
         }
@@ -54,7 +73,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService{
         // Check if message contains a notification payload.
         if (remoteMessage.getNotification() != null) {
             Log.d(TAG, "Message Notification Body: " + remoteMessage.getNotification().getBody());
-        }
+        }*/
 
     }
 

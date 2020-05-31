@@ -42,6 +42,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     EditText editEmail, editPassword, editName;
     Button btnSignIn, btnRegister;
+    String token;
 
     String URL= baseUrl + "/index.php";
 
@@ -62,6 +63,13 @@ public class LoginRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
+        FirebaseMessaging.getInstance().subscribeToTopic("test").addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(),"Subscribed to test topic",Toast.LENGTH_LONG).show();
+            }
+        });
+
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -72,7 +80,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         }
 
                         // Get new Instance ID token
-                        String token = task.getResult().getToken();
+                        token = task.getResult().getToken();
 
                         // Log and toast
                         String msg = getString(R.string.msg_token_fmt, token);
@@ -107,7 +115,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
                     } else {
                         AttemptLogin attemptLogin = new AttemptLogin();
-                        attemptLogin.execute(editName.getText().toString(), editPassword.getText().toString(), "");
+                        attemptLogin.execute(editName.getText().toString(), editPassword.getText().toString(), "",token);
                     }
 
                     String username = editName.getText().toString();
@@ -136,7 +144,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Please enter all the fields", Toast.LENGTH_SHORT).show();
                     } else {
                         AttemptLogin attemptLogin = new AttemptLogin();
-                        attemptLogin.execute(editName.getText().toString(), editPassword.getText().toString(), editEmail.getText().toString());
+                        attemptLogin.execute(editName.getText().toString(), editPassword.getText().toString(), editEmail.getText().toString(),token);
                     }
                 }
             }
@@ -145,7 +153,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
     private class AttemptLogin extends AsyncTask<String, String, JSONObject> {
 
-        String name, email, password;
+        String name, email, password,token;
 
         @Override
 
@@ -159,6 +167,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
 
         protected JSONObject doInBackground(String... args) {
 
+            this.token=args[3];
             this.email = args[2];
             this.password = args[1];
             this.name= args[0];
@@ -166,6 +175,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
             ArrayList<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("username", name));
             params.add(new BasicNameValuePair("password", password));
+            params.add(new BasicNameValuePair("token", token));
             if(email.length()>0) {
                 params.add(new BasicNameValuePair("email",email));
             }
