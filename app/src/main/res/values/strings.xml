@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">LoginPHPMySQL</string>
+    <string name="app_name">CoAcStr</string>
+    <string name="subtitle">Cope with academic stress</string>
     <string name="thank_you_message">Thank you for completing the questionnaire!!</string>
     <string name="option1">1</string>
     <string name="option2">2</string>

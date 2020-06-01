@@ -11,7 +11,9 @@
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_marginVertical="50dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="#f1f1f1">
 
             <TableRow android:layout_marginTop="1dp">
 
@@ -20,6 +22,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Age" />
 
                 <EditText
@@ -27,6 +34,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:hint="Enter age"
                     android:inputType="number" />
             </TableRow>
@@ -38,6 +49,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Gender" />
 
                 <Spinner
@@ -45,6 +61,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/gender" />
             </TableRow>
 
@@ -55,6 +75,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Branch" />
 
                 <Spinner
@@ -62,6 +87,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/branch" />
             </TableRow>
 
@@ -72,6 +101,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Year" />
 
                 <Spinner
@@ -79,6 +113,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/year" />
             </TableRow>
 
@@ -89,6 +127,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Day Scholar (Yes/No)" />
 
                 <Spinner
@@ -96,6 +139,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
 
             </TableRow>
@@ -107,6 +154,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="DASA Student" />
 
                 <Spinner
@@ -114,6 +166,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
             </TableRow>
 
@@ -124,6 +180,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Dropped year for JEE?" />
 
                 <Spinner
@@ -131,6 +192,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
             </TableRow>
 
@@ -141,6 +206,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Annual Family Income" />
 
                 <Spinner
@@ -148,6 +218,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/family_annual_income" />
             </TableRow>
 
@@ -158,6 +232,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="No of family members" />
 
                 <EditText
@@ -165,6 +244,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:hint="Enter number"
                     android:inputType="number" />
             </TableRow>
@@ -176,6 +259,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Mother education level" />
 
                 <Spinner
@@ -183,6 +271,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/edu_levels" />
             </TableRow>
 
@@ -193,6 +285,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Father education level" />
 
                 <Spinner
@@ -200,6 +297,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/edu_levels" />
             </TableRow>
 
@@ -210,6 +311,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Family similarity in education"
                     android:tooltipText="A family member with the same educational background as yours" />
 
@@ -218,6 +324,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
             </TableRow>
 
@@ -228,6 +338,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Involvement in tech societies"
                     android:tooltipText="Rate your involvement in technical societies" />
 
@@ -236,6 +351,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/involvement" />
             </TableRow>
 
@@ -246,6 +365,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Involvement in cultural clubs"
                     android:tooltipText="Rate your involvement in cultural clubs" />
 
@@ -254,6 +378,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/involvement" />
             </TableRow>
 
@@ -264,6 +392,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Placed?" />
 
                 <Spinner
@@ -271,6 +404,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no_not_applicable" />
             </TableRow>
 
@@ -281,6 +418,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="CGPA" />
 
                 <Spinner
@@ -288,6 +430,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/cgpa_buckets" />
             </TableRow>
 
@@ -298,6 +444,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="SC/ST/OBC" />
 
                 <Spinner
@@ -305,6 +456,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
             </TableRow>
 
@@ -315,6 +470,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="PwD" />
 
                 <Spinner
@@ -322,6 +482,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
             </TableRow>
 
@@ -332,6 +496,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="1"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginHorizontal="1dp"
+                    android:background="#ffffff"
                     android:text="Single Child" />
 
                 <Spinner
@@ -339,6 +508,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_column="2"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="1dp"
+                    android:layout_marginRight="1dp"
+                    android:background="#ffffff"
                     android:entries="@array/yes_no" />
             </TableRow>
 
@@ -351,7 +524,11 @@
                     android:layout_span="3"
                     android:gravity="center"
                     android:text="Submit"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:layout_margin="3dp"
+                    android:background="@color/colorAccent"
+                    android:textColor="@color/colorPrimary"
+                    />
             </TableRow>
 
         </TableLayout>

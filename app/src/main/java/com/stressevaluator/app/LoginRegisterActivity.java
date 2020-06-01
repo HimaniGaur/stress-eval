@@ -66,7 +66,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().subscribeToTopic("test").addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(getApplicationContext(),"Subscribed to test topic",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"Subscribed to test topic",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -85,7 +85,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
                         // Log and toast
                         String msg = getString(R.string.msg_token_fmt, token);
                         Log.d(TAG, msg);
-                        Toast.makeText(LoginRegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(LoginRegisterActivity.this, msg, Toast.LENGTH_SHORT).show();
                     }
                 });
 
